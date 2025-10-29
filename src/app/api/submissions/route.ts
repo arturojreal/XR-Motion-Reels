@@ -3,11 +3,16 @@ import {
   getSubmissions,
   addSubmission,
   updateSubmission,
-} from '@/lib/db';
+  saveSubmissions,
+  initializeFromJSON,
+} from '@/lib/kv-db';
 import { SubmissionFormData, Submission } from '@/types';
 
 export async function GET() {
   try {
+    // Initialize KV from JSON if needed (first run)
+    await initializeFromJSON();
+    
     const submissions = await getSubmissions();
     return NextResponse.json({ submissions });
   } catch (error) {
@@ -90,10 +95,4 @@ export async function PATCH(request: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-// Helper function for bulk updates
-async function saveSubmissions(submissions: Submission[]) {
-  const { saveSubmissions: save } = await import('@/lib/db');
-  await save(submissions);
 }
