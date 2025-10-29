@@ -6,7 +6,20 @@ const SUBMISSIONS_KEY = 'submissions';
 export async function getSubmissions(): Promise<Submission[]> {
   try {
     const submissions = await kv.get<Submission[]>(SUBMISSIONS_KEY);
-    return submissions || [];
+    if (!submissions) return [];
+    
+    // Sort by order property (accepted reels should have order set)
+    return submissions.sort((a, b) => {
+      // If both have order, sort by order
+      if (a.order !== undefined && b.order !== undefined) {
+        return a.order - b.order;
+      }
+      // If only one has order, it comes first
+      if (a.order !== undefined) return -1;
+      if (b.order !== undefined) return 1;
+      // Otherwise sort by submission date
+      return new Date(a.submittedAt).getTime() - new Date(b.submittedAt).getTime();
+    });
   } catch (error) {
     console.error('Error fetching submissions from KV:', error);
     return [];
