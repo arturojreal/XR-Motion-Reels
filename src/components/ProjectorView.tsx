@@ -61,7 +61,7 @@ export default function ProjectorView() {
 
       {/* Main Video Area */}
       <main className="flex-1 relative">
-        <ReelPlayer reel={currentReel} onVideoEnd={nextReel} />
+        <ReelPlayer key={currentReel.id} reel={currentReel} onVideoEnd={nextReel} />
 
         {/* Navigation Indicators */}
         <div className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white/60 text-2xl">

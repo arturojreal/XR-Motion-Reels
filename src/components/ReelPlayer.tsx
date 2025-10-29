@@ -101,7 +101,7 @@ export default function ReelPlayer({ reel, onVideoEnd }: ReelPlayerProps) {
   }, [isDirect, isYouTube, onVideoEnd, reel.id]);
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-black">
+    <div className="w-full h-full flex items-center justify-center bg-black" key={reel.id}>
       {isDirect ? (
         <video
           ref={videoRef}
@@ -116,6 +116,7 @@ export default function ReelPlayer({ reel, onVideoEnd }: ReelPlayerProps) {
         </video>
       ) : (
         <iframe
+          key={`iframe-${reel.id}`}
           ref={iframeRef}
           src={embedUrl}
           className="w-full h-full"
