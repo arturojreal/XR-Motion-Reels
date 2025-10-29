@@ -63,7 +63,6 @@ export default function ReelPlayer({ reel, onVideoEnd }: ReelPlayerProps) {
           className="w-full h-full"
           frameBorder="0"
           allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
           title={`Video reel by ${reel.firstName} ${reel.lastName}`}
           aria-label={`Video reel by ${reel.firstName} ${reel.lastName}`}
         />

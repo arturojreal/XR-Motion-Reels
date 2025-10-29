@@ -9,14 +9,15 @@ export function getVideoEmbedUrl(url: string): string {
   const youtubeRegex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/;
   const youtubeMatch = url.match(youtubeRegex);
   if (youtubeMatch) {
-    return `https://www.youtube.com/embed/${youtubeMatch[1]}?autoplay=1&mute=1&loop=1&playlist=${youtubeMatch[1]}`;
+    const videoId = youtubeMatch[1].split('&')[0]; // Clean any extra params
+    return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&enablejsapi=1`;
   }
 
   // Vimeo
   const vimeoRegex = /vimeo\.com\/(\d+)/;
   const vimeoMatch = url.match(vimeoRegex);
   if (vimeoMatch) {
-    return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&muted=1&loop=1`;
+    return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&muted=1`;
   }
 
   // Direct video URL
