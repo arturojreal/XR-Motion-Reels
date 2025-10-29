@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSubmissionStore } from '@/store/submissionStore';
 import { useKeyPress } from '@/hooks/useKeyPress';
 import { formatDate } from '@/lib/utils';
@@ -26,10 +26,15 @@ export default function ProjectorView() {
   useKeyPress('ArrowRight', nextReel, !isAdminMode);
   useKeyPress('ArrowLeft', previousReel, !isAdminMode);
 
+  const [submissionUrl, setSubmissionUrl] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setSubmissionUrl(`${window.location.origin}/submit`);
+    }
+  }, []);
+
   const currentReel = acceptedReels[currentReelIndex];
-  const submissionUrl = typeof window !== 'undefined' 
-    ? `${window.location.origin}/submit` 
-    : '';
 
   if (!currentReel) {
     return (
