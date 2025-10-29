@@ -23,8 +23,10 @@ export async function saveSubmissions(submissions: Submission[]): Promise<void> 
       'utf-8'
     );
   } catch (error) {
-    console.error('Error saving submissions:', error);
-    throw error;
+    console.error('Error saving submissions (file system may be read-only on serverless):', error);
+    // On Vercel, file system is read-only. Log warning but don't crash.
+    console.warn('⚠️  Submissions cannot be persisted on Vercel without a database. See DEPLOYMENT_NOTE.md');
+    // Don't throw - allow the app to continue functioning
   }
 }
 
