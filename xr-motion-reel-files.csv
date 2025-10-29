@@ -1,0 +1,26 @@
+File Path,Description,Category
+README.md,Project documentation and setup instructions,Documentation
+package.json,NPM dependencies and scripts,Configuration
+tsconfig.json,TypeScript configuration,Configuration
+tailwind.config.ts,TailwindCSS styling configuration,Configuration
+next.config.js,Next.js framework configuration,Configuration
+.eslintrc.json,ESLint code quality rules,Configuration
+.prettierrc,Prettier code formatting rules,Configuration
+src/types/index.ts,TypeScript type definitions,Types
+src/lib/utils.ts,Utility functions for video parsing and validation,Utilities
+src/lib/db.ts,Database operations for JSON file storage,Database
+src/store/submissionStore.ts,Zustand state management store,State
+src/hooks/useKeyPress.ts,Keyboard event handling hook,Hooks
+src/hooks/useTapDetection.ts,Mobile tap detection hook,Hooks
+src/hooks/useSubmissions.ts,Submissions data fetching hook,Hooks
+src/app/api/submissions/route.ts,REST API endpoints for submissions,API
+src/components/ReelPlayer.tsx,Video player component for reels,Components
+src/components/QRCodeDisplay.tsx,QR code generation component,Components
+src/components/SubmissionForm.tsx,Mobile submission form component,Components
+src/components/ProjectorView.tsx,Main projector display view,Components
+src/components/AdminPanel.tsx,Admin submission management panel,Components
+src/app/layout.tsx,Root layout with metadata,App
+src/app/page.tsx,Main homepage with projector view,App
+src/app/submit/page.tsx,Mobile submission page,App
+src/app/globals.css,Global CSS styles,Styles
+data/submissions.json,JSON database for submissions,Data

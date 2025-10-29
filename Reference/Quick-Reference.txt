@@ -1,0 +1,70 @@
+
+QUICK REFERENCE CARD
+====================
+
+KEYBOARD SHORTCUTS:
+→ Arrow Right - Next reel
+← Arrow Left  - Previous reel  
+X - Toggle admin mode
+F11 - Full screen
+
+MOBILE GESTURES:
+Tap 10x rapidly - Toggle admin mode
+
+API ENDPOINTS:
+GET    /api/submissions       - Fetch all
+POST   /api/submissions       - Create new
+PATCH  /api/submissions       - Update/reorder
+DELETE /api/submissions?id=X  - Remove
+
+URLS:
+/          - Projector view
+/submit    - Submission form
+/api/...   - API endpoints
+
+FILE STRUCTURE:
+src/
+├── app/           Pages & API
+├── components/    UI components
+├── lib/           Utilities & DB
+├── types/         TypeScript types
+├── hooks/         Custom hooks
+└── store/         Zustand state
+
+data/
+└── submissions.json  Database
+
+COMPONENT HIERARCHY:
+page.tsx
+├── ProjectorView
+│   ├── ReelPlayer
+│   └── QRCodeDisplay
+└── AdminPanel (conditional)
+
+submit/page.tsx
+└── SubmissionForm
+
+STATE (Zustand):
+- submissions[]
+- acceptedReels[]
+- currentReelIndex
+- isAdminMode
+- fetchSubmissions()
+- addSubmission()
+- updateSubmissionStatus()
+- reorderReels()
+
+STYLING:
+TailwindCSS classes
+Dark theme (#0a0a0a background)
+Custom animations (fade-in, slide-in)
+Responsive breakpoints
+
+DEPLOYMENT CHECKLIST:
+□ npm run build
+□ Test production locally
+□ Set environment vars
+□ Deploy to Vercel/Netlify
+□ Test QR code on mobile
+□ Verify video playback
+□ Check admin panel access
