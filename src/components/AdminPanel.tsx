@@ -46,7 +46,7 @@ export default function AdminPanel() {
     e.dataTransfer.dropEffect = 'move';
   };
 
-  const handleDrop = (e: React.DragEvent, targetReel: Submission) => {
+  const handleDrop = async (e: React.DragEvent, targetReel: Submission) => {
     e.preventDefault();
     if (!draggedItem || draggedItem.id === targetReel.id) return;
 
@@ -57,7 +57,14 @@ export default function AdminPanel() {
     newOrder.splice(draggedIndex, 1);
     newOrder.splice(targetIndex, 0, draggedItem);
 
-    reorderReels(newOrder);
+    await reorderReels(newOrder);
+    setDraggedItem(null);
+    
+    // Refresh to ensure we have the latest data
+    await fetchSubmissions();
+  };
+
+  const handleDragEnd = () => {
     setDraggedItem(null);
   };
 
@@ -292,7 +299,10 @@ export default function AdminPanel() {
                     onDragStart={(e) => handleDragStart(e, reel)}
                     onDragOver={handleDragOver}
                     onDrop={(e) => handleDrop(e, reel)}
-                    className="bg-gray-900 rounded-lg p-4 border border-gray-800 cursor-move hover:bg-gray-800 transition-colors"
+                    onDragEnd={handleDragEnd}
+                    className={`bg-gray-900 rounded-lg p-4 border border-gray-800 cursor-move hover:bg-gray-800 transition-colors ${
+                      draggedItem?.id === reel.id ? 'opacity-50' : ''
+                    }`}
                   >
                     <div className="flex items-center gap-4">
                       <span className="text-2xl font-bold text-gray-600">
