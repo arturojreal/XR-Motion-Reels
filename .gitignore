@@ -31,3 +31,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python scripts (not part of this project)
+*.py
+script*.py
+
+# temporary/reference files
+*.csv
+Reference/
